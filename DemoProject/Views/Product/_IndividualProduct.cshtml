@@ -1,0 +1,18 @@
+﻿@model DemoProject.Models.ProductDisplayModel
+@if (Model != null)
+{
+    <tr>
+        <td>@Model.SrNo</td>
+        <td>@Model.ProductName</td>
+        <td>@Model.CategoryName</td>
+        <td id="td_node_@Model.Id" class="center" tabindex="1" style="padding:8px 12px;">
+            @Html.ActionLink(" ", "CreateEdit", new { id = Model.Id }, new { @class = "fa fa-pencil-square-o", @title = "Edit" })
+
+            @Html.ActionLink(" ", "Delete", new { id = Model.Id }, new { @class = "fa fa-trash-o", @title = "Edit" })
+
+            @*@Html.ActionLink(" ", "Details", new { id = x.Id }, new { @class = "fa fa-eye", @title = "Edit" })*@
+        </td>
+    </tr>
+
+
+}

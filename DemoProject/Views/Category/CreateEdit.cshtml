@@ -1,0 +1,47 @@
+﻿@model EntityLayer.Category
+@{
+    ViewBag.Title = "CreateEdit";
+}
+@if (ViewBag.Isupdate)
+{
+    <h1 class="pagetittle">
+        Edit Category
+    </h1>
+}
+else
+{
+    <h1 class="pagetittle">
+        Create Category
+    </h1>
+}
+
+
+<div class="maincontentbox">
+    <div class="dashboardcontent">
+        @using (Html.BeginForm("CreateEdit", "Category"))
+        {
+            @Html.HiddenFor(m => m.Id)
+
+            <div class="addpagemaincontent scrollbar">
+                <div class="addpagecontainer">
+                    <div class="addflist">
+                        <div class="fgroup fgstyle2">
+                            <label>Name</label><span class="text-danger">*</span>
+                            @Html.TextBoxFor(m => m.CategoryName, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.CategoryName)
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="btncontainerboc">
+                <div style="float:right">
+                    <button type="submit" class="btn btn-success">
+                        Submit
+                    </button>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+

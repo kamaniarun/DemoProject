@@ -1,0 +1,37 @@
+﻿@using DemoProject.Models
+<script src="~/Scripts/jquery.min.js"></script>
+@if (ViewData["VDPager"] != null)
+{
+    PaginationModel model = (ViewData["VDPager"]) as PaginationModel;
+    var TotalRecords = model.TotalItems;
+    var PageNumber = model.CurrentPage;
+    var TotalItems = model.CurrentPage * model.ItemsPerPage;
+    if (model.CurrentPage > 1)
+    {
+        PageNumber = TotalItems - 9;
+    }
+    if (TotalRecords < TotalItems)
+    {
+        TotalItems = TotalRecords;
+    }
+    @Html.Hidden("page", 1)
+    <div class="row" style="display: flex;flex-wrap: inherit;">
+        <div class="col-sm-5">
+            <div class="dataTables_info" id="editable-datatable_info" role="status" aria-live="polite">Showing @PageNumber to @TotalItems of @TotalRecords entries</div>
+        </div>
+        <div class="col-sm-7">
+            <div class="dataTables_paginate paging_simple_numbers" id="editable-datatable_paginate">
+                <ul class="pagination">
+                    @Html.Pager(model.CurrentPage, model.ItemsPerPage, model.TotalItems)
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script language="javascript" type="text/javascript">
+        $(".pagination a").click(function () {
+            debugger
+            $(this).closest("form").find("#page").val($(this).attr("page-number"));
+            $(this).closest("form").submit();
+        });
+    </script>
+}

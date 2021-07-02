@@ -1,0 +1,40 @@
+﻿@model List<DemoProject.Models.ProductDisplayModel>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row page-titles">
+    <div class="col-md-5 align-self-center" style="padding-top:20px;">
+        <h1 class="pagetittle">
+            Product
+            <a href="@Url.Action("CreateEdit","Product")">
+                <i class="fa fa-plus" aria-hidden="true"></i>
+            </a>
+        </h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="clearfix">
+            <div class="pull-right tableTools-container"></div>
+        </div>
+        @using (Ajax.BeginForm("PartialIndex", "Product", new AjaxOptions { UpdateTargetId = "div-content-list" }))
+        {
+            <div class="space-4"></div>
+
+            <div id="div-content-list">
+                @Html.Partial("_ListProduct", Model)
+            </div>
+        }
+    </div>
+</div>
+
+
+<script>
+
+       if ('@(TempData["product"])' != '')
+    alert('@(TempData["product"])');
+</script>
+

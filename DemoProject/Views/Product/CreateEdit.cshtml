@@ -1,0 +1,54 @@
+﻿@model DemoProject.Models.ProductDisplayModel
+@{
+    ViewBag.Title = "CreateEdit";
+}
+@if (ViewBag.Isupdate)
+{
+    <h1 class="pagetittle">
+        Edit Product
+    </h1>
+}
+else
+{
+    <h1 class="pagetittle">
+        Create Product
+    </h1>
+}
+
+<div class="maincontentbox">
+    <div class="dashboardcontent">
+        @using (Html.BeginForm("CreateEdit", "Product"))
+        {
+            @Html.HiddenFor(m => m.Id)
+
+            <div class="addpagemaincontent scrollbar">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label>Name</label><span class="text-danger">*</span>
+                            @Html.TextBoxFor(m => m.ProductName, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.ProductName)
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label>Category</label><span class="text-danger">*</span>
+                            @Html.DropDownListFor(m => m.Categoryid, (IEnumerable<SelectListItem>)ViewBag.Category, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Categoryid)
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="btncontainerboc">
+                <div style="float:right">
+                    <button type="submit" class="btn btn-success">
+                        Submit
+                    </button>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+

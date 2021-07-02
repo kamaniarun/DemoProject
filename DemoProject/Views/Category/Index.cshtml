@@ -1,0 +1,39 @@
+﻿@model List<EntityLayer.Category>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/jquery.min.js"></script>
+
+<div class="row page-titles">
+    <div class="col-md-5 align-self-center" style="padding-top:20px;">
+        <h1 class="pagetittle">
+            Category
+            <a href="@Url.Action("CreateEdit","Category")">
+                <i class="fa fa-plus" aria-hidden="true"></i>
+            </a>
+        </h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="clearfix">
+            <div class="pull-right tableTools-container"></div>
+        </div>
+        @using (Ajax.BeginForm("PartialIndex", "Category", new AjaxOptions { UpdateTargetId = "div-content-list" }))
+        {
+            <div class="space-4"></div>
+
+            <div id="div-content-list">
+                @Html.Partial("_ListCategory", Model)
+            </div>
+        }
+    </div>
+</div>
+<script>
+
+       if ('@(TempData["category"])' != '')
+    alert('@(TempData["category"])');
+</script>
+

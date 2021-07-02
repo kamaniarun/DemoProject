@@ -1,0 +1,39 @@
+﻿@model List<EntityLayer.Category>
+@using DemoProject.Models
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="datblwrapper listingtable scrollbar">
+    <div class="tab-content current" id="tab-1">
+        <table id="example" class="table table-striped table-bordered" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Sr No.</th>
+                    <th>Category Name</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{int i = 1;}
+                @{ PaginationModel model = (ViewData["VDPager"]) as PaginationModel;
+                    var TotalItems = model.CurrentPage * model.ItemsPerPage;
+                    if (model.CurrentPage > 1)
+                    {
+                        i = TotalItems - 9;
+                    }
+                }
+                @foreach (var item in Model)
+                {
+                    item.SrNo = i;
+                    @Html.Partial("_IndividualCategory", item)
+
+                    i++;
+                }
+            </tbody>
+        </table>
+        @Html.Partial("Pager")
+    </div>
+</div>
