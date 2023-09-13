@@ -1,5 +1,5 @@
 -----Demo db script---------
-
+To run the code create DB firs
 
 CREATE Database [Demo]
 
